@@ -8,6 +8,7 @@ import email
 import imaplib
 import poplib
 from email.parser import Parser
+import urllib3
 
 
 class EmailVerificationHandler:
@@ -16,6 +17,10 @@ class EmailVerificationHandler:
         self.username = Config().get_temp_mail()
         self.epin = Config().get_temp_mail_epin()
         self.session = requests.Session()
+        # 禁用 SSL 驗證
+        self.session.verify = False
+        # 禁用 SSL 警告
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         self.emailExtension = Config().get_temp_mail_ext()
         # 获取协议类型，默认为 POP3
         self.protocol = Config().get_protocol() or 'POP3'
