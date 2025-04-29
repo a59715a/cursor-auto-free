@@ -318,7 +318,7 @@ def sign_up_account(browser, tab):
         with open('account_info.txt', 'w', encoding='utf-8') as file:
             file.write('')
     with open('account_info.txt', 'a', encoding='utf-8') as file:
-        file.write(account_info + '\n')
+        file.write( '\n'+account_info + '\n')
     print('寫入完成')
     time.sleep(5)
     return True
@@ -494,6 +494,7 @@ if __name__ == "__main__":
                 # reset_machine_id(greater_than_0_45)
                 logging.info(get_translation("all_operations_completed"))
                 print_end_message()
+                print(get_translation("cursor_account_info", email=account, password=password))
             else:
                 logging.error(get_translation("session_token_failed"))
 
